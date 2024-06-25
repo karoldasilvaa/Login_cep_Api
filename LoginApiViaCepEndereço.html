@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--função AJAX do jQuery para enviar a solicitação da API -->
+    <script>
+        // ready é para a função só iniciar quando carregar a página
+        $(document).ready(function () {
+            // blur é para quando digitar e sair do input ele chama a api
+            $("input[name=cep]").blur(function () {
+                var cep = $(this).val().replace(/[^0-9]/, '');
+                if (cep) {
+                    var url = 'https://viacep.com.br/ws/' + cep + '/json/';
+                    $.ajax({
+                        url: url,
+                        dataType: 'jsonp',
+                        crossDomain: true,
+                        contentType: "application/json",
+                        success: function (json) {
+                            if (json.logradouro) {
+                                $("input[name=rua]").val(json.logradouro);
+                                $("input[name=bairro]").val(json.bairro);
+                                $("input[name=cidade]").val(json.localidade);
+                                $("input[name=uf]").val(json.uf);
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('#salvar').click(function () {
+            })
+        });
+    </script>
+</head>
+<body>
+
+    <form action="">
+        <h1>Formulário para obter endereço a partir do CEP</h1>
+
+        <fieldset>
+            <legend>Insira seu Cep</legend>
+
+            <div id="alinhamento">
+                <label for="">Cep:</label>
+                <input type="text" name="cep" required>
+                <br>
+            </div>
+
+            <div id="alinhamento">
+                <label for="">Rua:</label>
+                <input type="text" name="rua" disabled='true'>
+                <br>
+            </div>
+
+            <div id="alinhamento">
+                <label for="">Bairro:</label>
+                <input type="text" name="bairro" disabled='true'>
+                <br>
+            </div>
+
+            <div id="alinhamento">
+                <label for="">Cidade:</label>
+                <input type="text" name="cidade" disabled='true'>
+                <br>
+            </div>
+
+            <div id="alinhamento">
+                <label for="">Uf:</label>
+                <input type="text" name="uf" disabled='true'>
+                <br>
+            </div>
+
+            <div id="alinhamento">
+                <label for="">Número:</label>
+                <input type="text">
+                <br>
+            </div>
+
+            <div id="alinhamento">
+                <label for="">Complemento:</label>
+                <input type="text">
+                <br>
+            </div>
+
+            <button id="salvar">Salvar</button>
+        </fieldset>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+h1 {
+    text-align: center;
+    background: linear-gradient(to left, rgb(253, 253, 165), rgb(255, 202, 211));
+}
+
+form {
+    text-align: center;
+    margin-top: 10px;
+}
+
+input,
+button {
+    border-radius: 5px;
+    margin: 5px;
+    margin-top: 10px;
+    width: 50%;
+}
+
+label {
+    text-align: right;
+    margin-top: 10px;
+}
+
+#alinhamento {
+    margin-bottom: -10px;
+    display: grid;
+    grid-template-columns: 1.5fr 3.5fr;
+}
+
+button {
+    width: 100px;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+    background-color: rgb(255, 202, 211);
+}
+
+fieldset {
+    width: 50%;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+legend {
+    font-size: 25px;
+}
